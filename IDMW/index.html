@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    test
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <style>
+            header.masthead{
+                text-align: center;
+                color: white;
+                background-image: url("./img/conference.jpg");
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+                background-position: center center;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <!--barra de navegação-->
+            <a class="navbar-brand " href="#page-top">WebConference</a>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!--items de navegação-->
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#speakers">speakers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sponsors">spronsors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contactos">contactos</a>
+                    </li>
+                </ul>
+            </div>
+
+            <button 
+                class="navbar-toggler navbar-toggler-right"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive">
+            </button>
+            <span class="navbar-toggler-icon"></span>
+        </nav>
+        <header class="masthead">
+            <!--imagem principal e botão de inscrição na conferência-->
+            <div class="container">
+                <div class="intro-text">
+                    <!--titulo-->
+                    <!--bt de inscrição-->
+                </div>
+            </div>
+        </header>
+
+        <section id="about"><!--informação sobre a conferencia --></section>
+        <section id="speakers"><!--informação sobre os oradores--></section>
+        <section id="sponsors"><!--informação sobre os sponsors--></section>
+        <section id="contacts"><!--formulário para contactos e mapa--></section>
+
+        <footer><!--links para as redes sociais e copyrights--></footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
 </html>
