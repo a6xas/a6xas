@@ -55,7 +55,7 @@ window.onload = function () {
         txtSpeakers += `
         <div class="col-sm-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="${speaker.foto}" alt="">
+                        <img id="${speaker.idSpeaker}" class="mx-auto rounded-circle viewSpeaker" src="${speaker.foto}" alt="">
                         <h4>${speaker.nome}</h4>
                         <p class="text-muted">${speaker.cargo}</p>
                         <ul class="list-inline social-buttons">`
@@ -88,7 +88,27 @@ window.onload = function () {
                     </div>
                 </div>
                 `
-        
+        const btnView = document.getElementsByClassName("viewSpeaker")
+        for (let i = 0;  i< btnView.length; i++) {
+            btnView[i].addEventListener("click", () => {
+                for (const speaker of speakers){
+                    if (speaker.idSpeaker == btnView[i].getAttribute("id")) {
+                        //janela modal
+                        swal({
+                            title:speaker.nome,
+                            text:speaker.bio,
+                            imageUrl:speaker.foto,
+                            imageWidth: 400,
+                            imageHeight: 400,
+                            imageAlt: 'foto do orador',
+                            animation: false
+                        })
+                    }
+                }
+
+            })
+            
+        }
     }
     renderSpeakers.innerHTML = txtSpeakers
 })()
