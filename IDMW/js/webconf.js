@@ -4,6 +4,7 @@ window.onload = function () {
     const btnRegister = document.getElementById("btnRegister")
     // Registar participante
     btnRegister.addEventListener("click", function () {
+        /*  swal=SWeet ALert */
         swal({
             title: "Inscrição na WebConference",
             html:
@@ -45,6 +46,7 @@ window.onload = function () {
 
 };
 
+/* RENDER SPEAKERS */
 (async() => {
     const renderSpeakers = document.getElementById("renderSpeakers")
     let txtSpeakers = ""
@@ -113,6 +115,7 @@ window.onload = function () {
     renderSpeakers.innerHTML = txtSpeakers
 })()
 
+/* RENDER SPONSORS */
 (async()=>{
     const renderSponsors = document.getElementById("renderSponsors")
     let txtSponsors = ""
@@ -129,3 +132,24 @@ window.onload = function () {
     }
     renderSponsors.innerHTML = txtSponsors
 })()
+
+/* CONTACT FORM SEND */
+const contactForm = document.getElementById("contactForm")
+contactForm.addEventListener("submit", async ()=> {
+    const name=document.getElementById("name").value
+    const email=document.getElementById("email").value
+    const message=document.getElementById("message").value
+    const response = await fetch(`${url_base}/contacts/emails`,{
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        body: `email=${email}&name=${name}&subject=${message}`
+    })
+    const result=await response.json()
+    if(result.value.success){
+        swal('Envio de Mensagem',result.value.message.pt,'success')
+    } else {
+        swal('Erro',result.err_message)
+    }
+})

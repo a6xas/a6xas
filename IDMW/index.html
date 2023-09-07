@@ -41,6 +41,7 @@
             </button>
             <span class="navbar-toggler-icon"></span>
         </nav>
+        
         <header class="masthead">
             <!--imagem principal e botão de inscrição na conferência-->
             <div class="container">
@@ -122,7 +123,75 @@
             </div>
         </section>
         
-        <section id="contacts"><!--formulário para contactos e mapa--></section>
+        <section id="contacts">
+            <!--formulário para contactos e mapa-->
+            <div class="container">
+                <div class="row">
+                    <!--titulo e texto principal-->
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">contactos</h2>
+                        <h3 class="section-subheading">Formulário para contacto.</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="contactForm" name="sendMessage">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--nome-->
+                                    <div class="form-group">
+                                        <input
+                                         id="name"
+                                         class="form-control"
+                                         type="text"
+                                         placeholder="o seu nome"
+                                         required>
+                                    </div>
+                                    <!--email-->
+                                    <div class="form-group">
+                                        <input
+                                         id="email"
+                                         class="form-control"
+                                         type="text"
+                                         placeholder="o seu email"
+                                         required>
+                                    </div>
+                                    <!--telemóvel-->
+                                    <div class="form-group">
+                                        <input
+                                         id="telemovel"
+                                         class="form-control"
+                                         type="text"
+                                         placeholder="o seu telemóvel">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!--corpo da mensagem-->
+                                    <div class="form-group">
+                                        <textarea 
+                                         id="message"
+                                         class="form-control"
+                                         placeholder = "mensagem a enviar"
+                                         rows="3"
+                                         required></textarea>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <!--botão de envio-->
+                                    <button
+                                     id="sendMessageButton"
+                                     class="btn btn-primary btn-xl text-uppercase"
+                                     type="submit">
+                                     Enviar Mensagem
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer><!--links para as redes sociais e copyrights--></footer>
 
