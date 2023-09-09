@@ -153,3 +153,36 @@ contactForm.addEventListener("submit", async ()=> {
         swal('Erro',result.err_message)
     }
 })
+
+
+/** GOOGLE MAPS **/
+
+function myMap(){
+//ponto no mapa para loclizar o sitio
+const porto=new google.maps.LatLng(41.14961, -8.61099)
+const mapProp = {
+    center:porto,
+    zoom:12,
+    scrollwheel:false,
+    draggable:false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+}
+const map= new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+//janela de informação
+const infowindow = new google.maps.InfoWindow({
+    content:"É aqui a conferência!"
+})
+
+//marcador
+const marker = new google.maps.Marker({
+    position:porto,
+    map:map,
+    title:"WebConference"
+})
+
+//abrir janela de informação
+marker.addListener('click',function() {
+    infowindow.open(map, marker);
+})
+}
