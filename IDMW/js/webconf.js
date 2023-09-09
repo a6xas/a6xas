@@ -135,7 +135,7 @@ window.onload = function () {
 
 /* CONTACT FORM SEND */
 const contactForm = document.getElementById("contactForm")
-contactForm.addEventListener("submit", async ()=> {
+contactForm.addEventListener("submit", async function() {
     const name=document.getElementById("name").value
     const email=document.getElementById("email").value
     const message=document.getElementById("message").value
@@ -146,13 +146,13 @@ contactForm.addEventListener("submit", async ()=> {
         method: "POST",
         body: `email=${email}&name=${name}&subject=${message}`
     })
-    const result=await response.json()
+    const result = await response.json()
     if(result.value.success){
         swal('Envio de Mensagem',result.value.message.pt,'success')
     } else {
         swal('Erro',result.err_message)
     }
-})
+});
 
 
 /** GOOGLE MAPS **/
@@ -182,7 +182,7 @@ const marker = new google.maps.Marker({
 })
 
 //abrir janela de informação
-marker.addListener('click',function() {
-    infowindow.open(map, marker);
+marker.addListener('click', function() {
+    infowindow.open(map, marker)
 })
 }
