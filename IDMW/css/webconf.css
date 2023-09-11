@@ -1,5 +1,5 @@
 .navbar-brand{
-    color: #428bca;
+    color: #428bca !important;
     font-family: 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 header.masthead{
