@@ -1,5 +1,6 @@
 window.onload = function () {
     //código para manipular DOM
+    const urlBase = "https://fcawebbook.herokuapp.com"
 
     const btnRegister = document.getElementById("btnRegister")
     // Registar participante
@@ -8,19 +9,21 @@ window.onload = function () {
         swal({
             title: "Inscrição na WebConference",
             html:
-                '<input id="txtName" class="swal2-input" placeholder="nome">' +
-                '<input id="txtEmail" class="swal2-input" placeholder="e-mail">',
+            '<input id="swal-input1" class="swal2-input" placeholder="nome">' +
+            '<input id="swal-input2" class="swal2-input" placeholder="e-mail">',      
             showCancelButton: true,
             confirmButtonText: "Inscrever",
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
             preConfirm: async () => {
-                const name = document.getElementById('txtName').value
-                const email = document.getElementById('txtEmail').value
-                const url_base = "https://fcawebbook.herokuapp.com"
-                try {
-                    const response = await fetch(`${url_base}/conferences/1/participants/${email}`, {
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              const name = document.getElementById('swal-input1').value
+              const email = document.getElementById('swal-input2').value
+
+              try {
+                    const response = await fetch(`${urlBase}/conferences/1/participants/${email}`, {
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
                         method: "POST",
                         body: `nomeparticipant=${name}`
                     });
@@ -33,15 +36,60 @@ window.onload = function () {
                 }
             },
             allowOutsideClick: () => !swal.isLoading()
-        }).then(result => {
-            if (result.value) {
-                if (!result.value.err_code) {
-                    swal({ title: "Inscrição feita com sucesso!" })
-                } else {
-                    swal({ title: `${result.value.err_message}` })
-                }
+          }).then(result => {
+            if (result.value) {               
+              if (!result.value.err_code) {
+                swal({title: "Inscrição feita com sucesso!"})  
+              } else {
+                swal({title: `${result.value.err_message}`})  
+              }
             }
-        });
+          });
+      
+    });
+
+    //button login to private area
+    const btnLogin = document.getElementById("btnLogin")
+    btnLogin.addEventListener("click", function () {
+        /*  swal=SWeet ALert */
+        swal({
+            title: "Login na área reservada",
+            html:
+            '<input id="swal-input1" class="swal2-input" placeholder="e-mail">' +
+            '<input type="password" id="swal-input2" class="swal2-input" placeholder="password">',      
+            showCancelButton: true,
+            confirmButtonText: "Entrar",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+            preConfirm: async () => {
+              const email = document.getElementById('swal-input1').value
+              const password = document.getElementById('swal-input2').value
+              try {
+                    const response = await fetch(`${urlBase}/signin`, {
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        method: "POST",
+                        body: `email=${email}&password=${password}`
+                    });
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    swal.showValidationError(`Request failed: ${error}`);
+                }
+            },
+            allowOutsideClick: () => !swal.isLoading()
+          }).then(result => {
+            if (result.value) {               
+              if (!result.value.err_code) {
+                swal({title: "Entrou com sucesso!"})  
+              } else {
+                swal({title: `${result.value.err_message}`})  
+              }
+            }
+          });
     });
 
 };
@@ -50,7 +98,7 @@ window.onload = function () {
 (async() => {
     const renderSpeakers = document.getElementById("renderSpeakers")
     let txtSpeakers = ""
-    const response = await fetch('${url_base}/conferences/1/speakers')
+    const response = await fetch(`${urlBase}/conferences/1/speakers`)
     const speakers = await response.json()
 
     for (const speaker of speakers) {
@@ -119,7 +167,7 @@ window.onload = function () {
 (async()=>{
     const renderSponsors = document.getElementById("renderSponsors")
     let txtSponsors = ""
-    const response = await fetch('${urlBase}/conferences/l/sponsors')
+    const response = await fetch(`${urlBase}/conferences/l/sponsors`)
     const sponsors = await response.json()
 
     for (const sponsor of sponsors) {
@@ -139,7 +187,7 @@ contactForm.addEventListener("submit", async function() {
     const name=document.getElementById("name").value
     const email=document.getElementById("email").value
     const message=document.getElementById("message").value
-    const response = await fetch(`${url_base}/contacts/emails`,{
+    const response = await fetch(`${urlBase}/contacts/emails`,{
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
