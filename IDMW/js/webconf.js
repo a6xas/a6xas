@@ -1,7 +1,14 @@
+if (!sessionStorage.token) {
+    //utilizador sem acesso
+} else {
+    //acesso garantido    
+}
+
 window.onload = function () {
     //código para manipular DOM
     const urlBase = "https://fcawebbook.herokuapp.com"
-
+    
+    // Registar participante
     const btnRegister = document.getElementById("btnRegister")
     btnRegister.addEventListener("click", function () {
         /*  swal=SWeet ALert */
@@ -83,6 +90,7 @@ window.onload = function () {
           }).then(result => {
             if (result.value) {               
               if (!result.value.err_code) {
+                sessionStorage.token = email
                 swal({title: "Entrou com sucesso!"})  
               } else {
                 swal({title: `${result.value.err_message}`})  
