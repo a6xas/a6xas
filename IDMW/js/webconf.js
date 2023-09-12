@@ -3,7 +3,6 @@ window.onload = function () {
     const urlBase = "https://fcawebbook.herokuapp.com"
 
     const btnRegister = document.getElementById("btnRegister")
-    // Registar participante
     btnRegister.addEventListener("click", function () {
         /*  swal=SWeet ALert */
         swal({
@@ -202,9 +201,7 @@ contactForm.addEventListener("submit", async function() {
     }
 });
 
-
 /** GOOGLE MAPS **/
-
 function myMap(){
 //ponto no mapa para loclizar o sitio
 const porto=new google.maps.LatLng(41.14961, -8.61099)
