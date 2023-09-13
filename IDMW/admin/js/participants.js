@@ -33,4 +33,43 @@ window.onload = function () {
         strHtml += `</tbody>`
         tblParticipants.innerHTML = strHtml
     }
+
+    const btnDelete = document.getElementsByClassName("remove")
+    for (let i = 0; i < btnDelete.length; i++) {
+        btnDelete.addEventListener("click", () => {
+            //janela modal para confirmar remoção
+            swal({
+                title: 'Tem a certeza?',
+                text: "Isto é irreversível",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Remover'
+            }).then(async (result) => {
+                if(result.value){
+                    //pedido http para remoção da inscrição
+                    let participantId = btnDelete[i].getAttribute("id")
+                    try {
+                        const response = await fetch(`${urlBase}/conferences/1/participants/${participantId}`, {method: "DELETE"})
+                        const isRemoved = await response.json()
+                        swal(
+                            'Remoção de inscrição', 
+                            isRemoved.message.pt, 
+                            (isRemoved.success) ? 'success' : 'error'
+                        )
+                        renderParticipants()
+                    } catch (err) {
+                        swal({
+                            type: 'error', 
+                            title: 'Remoção de inscrição',
+                            text: err
+                        })
+                    }
+                }
+            })
+        })
+    }
+
 }
